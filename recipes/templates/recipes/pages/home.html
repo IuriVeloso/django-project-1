@@ -3,13 +3,18 @@
 {% include 'recipes/partial/head.html' %}
 
 <body>
-	<header class="main=header-container">
-		<div class="main-header container">
-			<a href="/">
-				<i class="fas fa-address-book" ></i>
-				<span>Recipes {{name}} </span>
-			<a>
+	{% include 'recipes/partial/header.html' %}
+	{% include 'recipes/partial/search.html' %}
+
+	<main class="main-content-container">
+		<div class="main-content main-content-list container">
+			<div class="recipe recipe-list-item">
+				<div class="recipe-cover">
+					<img src="https://imageplaceholder.net/1280x720/eeeeee/131313?text=Foto+de+algo" alt="Temporario">
+				</div>
+			</div>
 		</div>
-	</header>
+	</main>
 </body>
+
 </html>

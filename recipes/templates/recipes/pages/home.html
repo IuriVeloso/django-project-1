@@ -8,13 +8,11 @@
 
 	<main class="main-content-container">
 		<div class="main-content main-content-list container">
-			<div class="recipe recipe-list-item">
-				<div class="recipe-cover">
-					<img src="https://imageplaceholder.net/1280x720/eeeeee/131313?text=Foto+de+algo" alt="Temporario">
-				</div>
-			</div>
+			{% include 'recipes/partial/recipe.html' %}
 		</div>
 	</main>
+
+	{% include 'recipes/partial/footer.html' %}
 </body>
 
 </html>

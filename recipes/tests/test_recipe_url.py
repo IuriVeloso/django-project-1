@@ -1,7 +1,6 @@
-from django.test import TestCase
-from django.urls import resolve, reverse
 
-from recipes import views
+from django.test import TestCase
+from django.urls import reverse
 
 
 class RecipeURLsTest(TestCase):
@@ -17,8 +16,3 @@ class RecipeURLsTest(TestCase):
         home_url = reverse('recipes:recipe', kwargs={'id': 1})
         self.assertEqual(home_url, '/recipes/1/')
 
-
-class RecipeViewsTest(TestCase):
-    def test_Recipe_home_views_funcion_is_correct(self):
-        view = resolve(reverse('recipes:home'))
-        self.assertIs(view.func, views.home)

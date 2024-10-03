@@ -32,7 +32,7 @@ class RecipeHomeViewTest(RecipeTestBase):
         
         # Testing some random recipe properties
         self.assertEqual(len(response_recipes), 1)
-        self.assertEqual(response_recipes.first().title, 'Recipe Title')
+        self.assertEqual(response_recipes.object_list[0].title, 'Recipe Title')
         self.assertIn('Recipe Title', content)
         self.assertIn('10 Minutos', content)
         self.assertIn('5 Porções', content)

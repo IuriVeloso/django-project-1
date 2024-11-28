@@ -7,6 +7,8 @@
 		<h2>Register</h2>
 	</div>
 
+	{% include "recipes/partial/message.html" %}
+
 	<div class="main-content container">
 		<form action="{% url 'authors:register-create' %}" method="POST">
 			{% csrf_token %}
@@ -29,9 +31,20 @@
 					</div>
 				{% endfor %}
 			</div>
+			{% if form.errors %}
 			<div class="form-content form-content-grid">
 				<div class="form-group">
-				  <button type="submit">Enviar</button>
+					<div class="message message-error">
+						There are errors on the forms!
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			
+			<div class="form-content form-content-grid">
+				<div class="form-group">
+	
+				  <button type="submit">Send</button>
 				</div>
 			</div>
 		</form>

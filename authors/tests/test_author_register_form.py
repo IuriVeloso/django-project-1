@@ -52,8 +52,8 @@ class AuthorRegisterFormIntegrationTest(TestCase):
             'first_name': 'first',
             'last_name': 'last',
             'email': 'email@anyemail.com',
-            'password': '1',
-            'password2': '1',
+            'password': '@ABc12345',
+            'password2': '@ABc12345',
         }
         return super().setUp(*args,**kwargs)
     
@@ -129,4 +129,22 @@ class AuthorRegisterFormIntegrationTest(TestCase):
         response = self.client.post(url, data=self.form_data, follow=True)
         
         self.assertNotIn(msg, response.content.decode('utf-8'))
+        
+    def test_email_field_must_be_unique(self):
+        url = reverse('authors:register-create')
+        self.client.post(url, data=self.form_data, follow=True)
+            
+        response = self.client.post(url, data=self.form_data, follow=True)
+        
+        msg = 'User email is already in use'
+        
+        self.assertIn(msg, 
+                      response.context['form'].errors.get('email'))
+        self.assertIn(msg, 
+                      response.content.decode('utf-8'))
+       
     
+    def test_send_get_request_to_registration_create_view_returns_404(self): 
+        url = reverse('authors:register-create')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)

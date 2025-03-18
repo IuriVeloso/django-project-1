@@ -148,3 +148,22 @@ class AuthorRegisterFormIntegrationTest(TestCase):
         url = reverse('authors:register-create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+    
+    def test_author_created_can_login(self):
+        url = reverse('authors:register-create')
+        
+        self.form_data.update({
+            'username': 'testuser',
+            'password': '@Bc123456',
+            'password2': '@Bc123456'
+        })
+        
+        self.client.post(url, data=self.form_data, follow=True)
+            
+        is_authenticated = self.client.login(
+            username='testuser',
+            password='@Bc123456'
+        )
+        
+        self.assertTrue(is_authenticated)
+       

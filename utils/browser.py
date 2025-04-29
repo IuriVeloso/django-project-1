@@ -19,7 +19,7 @@ def make_firefox_browser(*options):
         for option in options:
             browser_options.add_argument(option)
             
-    if os.environ.get('SELENIUM_HEADLESS'):
+    if os.environ.get('SELENIUM_HEADLESS') == '1':
         browser_options.add_argument('--headless')
     
     service = FirefoxService()

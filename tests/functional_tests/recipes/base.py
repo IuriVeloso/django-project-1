@@ -1,9 +1,11 @@
 import time
 
-from django.contrib.staticfiles.testing import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from utils.browser import make_firefox_browser
+from recipes.tests.test_recipe_base import RecipeMixin
 
-class RecipeBaseFunctionalTest(LiveServerTestCase):
+
+class RecipeBaseFunctionalTest(StaticLiveServerTestCase, RecipeMixin):
     def sleep(self, seconds=3):
         time.sleep(seconds)
         

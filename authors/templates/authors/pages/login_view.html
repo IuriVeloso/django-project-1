@@ -7,7 +7,7 @@
 		<h2>Login</h2>
 		{% if request.user.is_authenticated %}
 			<div>
-				You are loggend in with {{ request.user.username }}.
+				You are logged in with {{ request.user.username }}.
 				Please, 
 				<form class="inline-form" action="{% url "authors:logout" %}" method="POST">
 					{% csrf_token %}

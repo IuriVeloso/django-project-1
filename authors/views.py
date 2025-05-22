@@ -45,9 +45,7 @@ def login_create(request):
     if not request.POST:
         raise Http404()
     
-    form = LoginForm(request.POST)
-    login_url = reverse('authors:login')
-    
+    form = LoginForm(request.POST)    
     if form.is_valid():
         authenticated_user = authenticate(username=form.cleaned_data.get('username', ''),
                                         password=form.cleaned_data.get('password', ''))        
@@ -60,11 +58,12 @@ def login_create(request):
     else:
         messages.error(request, 'Invalid username or password!')
     
-    return redirect(login_url)
+    return redirect(reverse('authors:dashboard'))
 
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_view(request):
+    print('ouii')
     if not request.POST:
         messages.error(request, 'Invalid logout request')
         return redirect(reverse('authors:login'))
@@ -76,3 +75,9 @@ def logout_view(request):
     messages.success(request, 'Logged out sucessfully')
     logout(request)
     return redirect(reverse('authors:login'))
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard_view(request):
+    
+    return render(request, 'authors/pages/dashboard_view.html')
